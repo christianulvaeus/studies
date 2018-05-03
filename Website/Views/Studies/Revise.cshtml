@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Revise";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Revise</h2>
+
+<ul>
+    @foreach (var article in ViewBag.Articles)
+    {
+        <li>@Html.Raw(article.Question)</li>
+    }
+</ul>
+

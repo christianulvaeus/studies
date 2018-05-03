@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Välkommen till testrundan!</h2>
+
+<dl>
+    <dt>Totalt</dt>
+    <dd>@ViewBag.Total</dd>
+    <dt>Obesvarade</dt>
+    <dd>@ViewBag.NeverAttempted</dd>
+    <dt>Svåra frågor</dt>
+    <dd>@ViewBag.HighFailureQuota</dd>
+    <dt>@Html.ActionLink("Under revision", "Revise")</dt>
+    <dd>@ViewBag.Revised</dd>
+</dl>
+
+@using (Html.BeginForm("Begin", "Studies"))
+{
+    @Html.TextBox("NumberOfQuestions", 10, new { @class = "form-control" });<br />
+    <input type="submit" value="Starta" class="btn" />
+}
+
+<br />
+
+@using (Html.BeginForm("Reset", "Studies"))
+{
+    <input type="submit" value="Återställ" class="btn" />
+}

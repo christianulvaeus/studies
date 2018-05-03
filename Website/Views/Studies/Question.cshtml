@@ -1,0 +1,40 @@
+﻿@model Website.Models.StudyArticle
+
+@{
+    ViewBag.Title = HttpUtility.HtmlDecode(Model.Question.RemoveHtml().Preview(50));
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Css {
+    <link type="text/css" href="~/Content/GoogleDocs.css" rel="stylesheet" />
+}
+
+<h2>Fråga</h2>
+<div>@Html.Raw(Model.Question)</div>
+
+<h2 data-toggle="collapse" style="cursor:pointer" data-target="#demo">Svar</h2>
+<div id="demo" class="collapse">
+    @Html.Raw(Model.Answer)
+</div>
+
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+    <input name="result" type="submit" value="Rätt" class="btn btn-success" />
+    <input name="result" type="submit" value="Fel" class="btn btn-danger" />
+    <input name="result" type="submit" value="Revidera" class="btn btn-warning" />
+}
+
+<br />
+
+@if (Model.NeverAttemped)
+{
+    <p><em>Förstagångsförsök</em></p>
+}
+
+@if (Model.HighFailureQuota)
+{
+    <p><em>Missar ofta</em></p>
+}
